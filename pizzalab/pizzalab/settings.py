@@ -25,7 +25,7 @@ SECRET_KEY = '1k%3_0oat!9)to4b^^wmw^y^liy79fl^p93r&ne+_6i%8^!s8d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'pizzalab.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'app',
+        'USER': 'postgres',
+        'PASSWORD': 'supersecretpassword',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
