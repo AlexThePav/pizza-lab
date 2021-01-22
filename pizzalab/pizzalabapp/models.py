@@ -15,9 +15,9 @@ class Ingredient(models.Model):
 class Pizza(models.Model):
     name = models.CharField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
-    ingredient = models.ManyToManyField(Ingredient,
-                                        related_name="pizzas",
-                                        on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(
+        Ingredient, related_name="pizzas"
+    )
 
     def __str__(self):
         return f'{self.name}'
