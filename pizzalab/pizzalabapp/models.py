@@ -8,11 +8,19 @@ class Ingredient(models.Model):
     is_allergen = models.BooleanField(default=False)
     has_lactose = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Pizza(models.Model):
     name = models.CharField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
-    ingredient = models.ManyToManyField(Ingredient)
+    ingredient = models.ManyToManyField(Ingredient,
+                                        related_name="pizzas",
+                                        on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Order(models.Model):
@@ -46,8 +54,20 @@ class Order(models.Model):
     total_price = models.PositiveIntegerField(default=0)
     customer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'''Order id:{self.id},
+        Customer: {self.customer},
+        Total Price: {self.total_price}'''
+
 
 class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
-    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    pizza = models.ForeignKey(Pizza,
+                              related_name="order_items",
+                              on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,
+                              related_name='order_items',
+                              on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.pizza} x {self.quantity}'
