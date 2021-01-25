@@ -121,5 +121,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-BASE_IP = os.environ.get('BASE_IP', 'localhost:8000')

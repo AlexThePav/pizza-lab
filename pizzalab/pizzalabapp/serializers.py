@@ -37,7 +37,6 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
         return False
 
 
-
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
