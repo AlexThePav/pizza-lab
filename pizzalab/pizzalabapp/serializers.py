@@ -1,40 +1,41 @@
 from rest_framework import serializers
-from django.conf import settings
-from rest_framework.reverse import reverse
-
 
 from pizzalabapp.models import Pizza, Ingredient, Order, OrderItem
 
 
-class IngredientListSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField()
-
+class IngredientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['name', 'url', ]
-
-    def get_url(self, obj):
-        ingredient = reverse('api:ingredient-detail', args=[obj.id])
-        return f'http://{settings.BASE_IP}{ingredient}'
+        fields = '__all__'
 
 
-class PizzaSerializer(serializers.ModelSerializer):
+class IngredientListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ('name',)
+
+
+class PizzaSerializer(serializers.HyperlinkedModelSerializer):
     ingredients = IngredientListSerializer(many=True)
-    url = serializers.SerializerMethodField()
+    has_allergen_ingredients = serializers.SerializerMethodField()
+    has_lactose_ingredients = serializers.SerializerMethodField()
 
     class Meta:
         model = Pizza
         fields = '__all__'
 
-    def get_url(self, obj):
-        pizza = reverse('api:pizza-detail', args=[obj.id])
-        return f'http://{settings.BASE_IP}{pizza}'
+    def get_has_allergen_ingredients(self, instance):
+        for ingredient in instance.ingredients.all():
+            if ingredient.is_allergen:
+                return True
+        return False
 
+    def get_has_lactose_ingredients(self, instance):
+        for ingredient in instance.ingredients.all():
+            if ingredient.has_lactose:
+                return True
+        return False
 
-class IngredientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ingredient
-        fields = '__all__'
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -49,4 +50,3 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = '__all__'
-

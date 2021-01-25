@@ -2,8 +2,6 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from pizzalabapp import views
 
-app_name = 'api'
-
 router = DefaultRouter()
 router.register(r'pizzas', views.PizzaViewSet, basename="pizza")
 router.register(r'ingredients', views.IngredientViewSet, basename="ingredient")

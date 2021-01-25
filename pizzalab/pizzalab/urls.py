@@ -5,5 +5,5 @@ from pizzalabapp import urls as pizzalab_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(pizzalab_urls, 'api'))
+    path('', include(pizzalab_urls))
 ]
