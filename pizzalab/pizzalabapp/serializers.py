@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from pizzalabapp.models import Pizza, Ingredient, Order, OrderItem
+from pizzalabapp.models import Ingredient, Order, OrderItem, Pizza
 
 
 class IngredientSerializer(serializers.HyperlinkedModelSerializer):
@@ -28,12 +28,14 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
         for ingredient in instance.ingredients.all():
             if ingredient.is_allergen:
                 return True
+
         return False
 
     def get_has_lactose_ingredients(self, instance):
         for ingredient in instance.ingredients.all():
             if ingredient.has_lactose:
                 return True
+
         return False
 
 
