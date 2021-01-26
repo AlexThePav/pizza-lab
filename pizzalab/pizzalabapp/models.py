@@ -19,6 +19,9 @@ class Pizza(models.Model):
         Ingredient, related_name="pizzas"
     )
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return f'{self.name}'
 
