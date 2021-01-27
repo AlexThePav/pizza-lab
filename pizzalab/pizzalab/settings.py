@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 
 
 # Logging
+
 LOGGING = {
     'version': 1,
     'filters': {
