@@ -46,7 +46,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    orders = OrderItemSerializer(many=True)
+    order_items = OrderItemSerializer(many=True)
 
     class Meta:
         model = Order
