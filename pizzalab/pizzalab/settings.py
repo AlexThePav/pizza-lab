@@ -32,7 +32,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'pizzalabapp'
+    'pizzalabapp',
+    'userapp'
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
@@ -145,4 +146,17 @@ LOGGING = {
             'propagate': True,
         }
     }
+}
+
+
+# django-rest-framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
 }
