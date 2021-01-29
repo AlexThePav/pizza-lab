@@ -24,6 +24,28 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
         model = Pizza
         fields = '__all__'
 
+    def create(self, validated_data):
+        ingredients_data = validated_data.pop('ingredients')
+        pizza = Pizza.objects.create(**validated_data)
+        for ingredient in ingredients_data:
+            pizza.ingredients.add(
+                Ingredient.objects.get(name=ingredient.get('name'))
+            )
+
+        return pizza
+
+    def validate_ingredients(self, value):
+        for ingredient in value:
+            ingr_name = ingredient.get('name')
+            try:
+                Ingredient.objects.get(name=ingr_name)
+            except Ingredient.DoesNotExist:
+                raise serializers.ValidationError(
+                    "Ingredient with name '{}' does not exist".format(ingr_name)
+                )
+
+        return value
+
     def get_has_allergen_ingredients(self, instance):
         for ingredient in instance.ingredients.all():
             if ingredient.is_allergen:
