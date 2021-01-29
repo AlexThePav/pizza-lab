@@ -13,6 +13,7 @@ class IngredientListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
         fields = ('name',)
+        extra_kwargs = {'name': {'validators': []}}
 
 
 class PizzaSerializer(serializers.HyperlinkedModelSerializer):
