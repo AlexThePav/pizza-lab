@@ -54,13 +54,20 @@ class Order(models.Model):
         default=''
     )
     delivery_address = models.CharField(max_length=150)
-    total_price = models.PositiveIntegerField(default=0)
+    total_price = models.PositiveIntegerField(default=0, null=True)
     customer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
         return f'''Order id:{self.id},
         Customer: {self.customer},
         Total Price: {self.total_price}'''
+
+    def calculate_total_price(self):
+        total_price = 0
+        for item in self.order_items.all():
+            total_price += item.pizza.price * item.quantity
+
+        return total_price
 
 
 class OrderItem(models.Model):
