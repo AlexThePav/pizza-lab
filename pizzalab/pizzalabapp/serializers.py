@@ -85,7 +85,7 @@ class OrderItemListSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 f"Pizza with name '{pizza_name}' does not exist"
             )
-    
+
     def get_price(self, instance):
         return instance.pizza.price
 
