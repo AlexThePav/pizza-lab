@@ -62,7 +62,7 @@ class Order(models.Model):
         Customer: {self.customer},
         Total Price: {self.total_price}'''
 
-    def calculate_total_price(self):
+    def get_total_price(self):
         total_price = 0
         for item in self.order_items.all():
             total_price += item.pizza.price * item.quantity

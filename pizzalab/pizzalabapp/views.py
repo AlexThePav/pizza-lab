@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -22,6 +23,17 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        customer_requested = self.request.data.get('customer')
+        if self.request.user.is_staff and customer_requested:
+            serializer.save(
+                customer=get_user_model().objects.get(
+                    id=customer_requested
+                )
+            )
+        else:
+            serializer.save(customer=self.request.user)
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):

@@ -94,6 +94,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
     order_items = OrderItemListSerializer(many=True)
+    customer = serializers.ReadOnlyField(source='customer.username')
 
     class Meta:
         model = Order
@@ -113,6 +114,7 @@ class OrderSerializer(serializers.ModelSerializer):
                 order=order
             )
             order.order_items.add(order_item)
-        order.total_price = order.calculate_total_price()
+        order.total_price = order.get_total_price()
+        order.save()
 
         return order
