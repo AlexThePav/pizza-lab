@@ -71,11 +71,10 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrderItemListSerializer(serializers.ModelSerializer):
     pizza = PizzaListSerializer()
-    price = serializers.SerializerMethodField()
 
     class Meta:
         model = OrderItem
-        fields = ('pizza', 'quantity', 'price')
+        fields = ('pizza', 'quantity')
 
     def validate_pizza(self, value):
         pizza_name = value.get('name')
@@ -85,9 +84,6 @@ class OrderItemListSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 f"Pizza with name '{pizza_name}' does not exist"
             )
-
-    def get_price(self, instance):
-        return instance.pizza.price
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
