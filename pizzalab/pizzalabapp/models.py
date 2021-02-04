@@ -37,6 +37,9 @@ class Order(models.Model):
     Model class representing an Order object
     """
 
+    class Meta:
+        ordering = ['-id']
+
     class Status(models.TextChoices):
         AWAITING_PAYMENT = 'AP', _('Awaiting Payment')
         PAYMENT_RECEIVED = 'PR', _('Payment Received')
