@@ -46,16 +46,10 @@ class OrderViewSet(viewsets.ModelViewSet):
                 status.HTTP_400_BAD_REQUEST
             )
 
-        customer = customer_requested if customer_requested and user.is_staff \
-            else user
+        customer = get_user_model().objects.get(id=customer_requested) \
+            if customer_requested and user.is_staff else user
 
-        if customer:
-            serializer.save(
-                customer=get_user_model().objects.get(id=customer.id)
-            )
-        else:
-            serializer.save(customer=user)
-
+        serializer.save(customer=customer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status.HTTP_201_CREATED, headers)
 
