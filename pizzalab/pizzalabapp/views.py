@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import viewsets, status
+from rest_framework import status, viewsets
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -10,16 +10,26 @@ from pizzalabapp.serializers import (IngredientSerializer, OrderItemSerializer,
 
 
 class IngredientViewSet(viewsets.ModelViewSet):
+    """
+    Viewset for Ingredient objects
+    """
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
 
 
 class PizzaViewSet(viewsets.ModelViewSet):
+    """
+    Viewset for Pizza objects
+    """
     queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
+    """
+    Viewset for Order objects
+    create and get_queryset methods are overridden
+    """
     serializer_class = OrderSerializer
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
@@ -29,31 +39,25 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         customer_requested = self.request.data.get('customer')
         user = self.request.user
-        if customer_requested and user.is_staff:
-            serializer.save(
-                customer=get_user_model().objects.get(
-                    id=customer_requested
-                )
-            )
-            headers = self.get_success_headers(serializer.data)
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED,
-                headers=headers
-            )
-        elif customer_requested and not user.is_staff:
+
+        if customer_requested and not user.is_staff:
             return Response(
                 "Ordering for other customers is prohibited",
-                status=status.HTTP_400_BAD_REQUEST
+                status.HTTP_400_BAD_REQUEST
+            )
+
+        customer = customer_requested if customer_requested and user.is_staff \
+            else user
+
+        if customer:
+            serializer.save(
+                customer=get_user_model().objects.get(id=customer.id)
             )
         else:
             serializer.save(customer=user)
-            headers = self.get_success_headers(serializer.data)
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED,
-                headers=headers
-            )
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status.HTTP_201_CREATED, headers)
 
     def get_queryset(self):
         user = self.request.user
@@ -64,6 +68,9 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):
+    """
+    Viewset for OrderItem objects
+    """
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
     authentication_classes = [SessionAuthentication]

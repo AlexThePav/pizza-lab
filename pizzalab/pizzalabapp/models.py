@@ -4,6 +4,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Ingredient(models.Model):
+    """
+    Model class representing an Ingredient object
+    """
     name = models.CharField(max_length=50, unique=True)
     is_allergen = models.BooleanField(default=False)
     has_lactose = models.BooleanField(default=False)
@@ -13,6 +16,9 @@ class Ingredient(models.Model):
 
 
 class Pizza(models.Model):
+    """
+    Model class representing a Pizza object
+    """
     name = models.CharField(max_length=50, unique=True)
     price = models.PositiveIntegerField()
     ingredients = models.ManyToManyField(
@@ -27,6 +33,9 @@ class Pizza(models.Model):
 
 
 class Order(models.Model):
+    """
+    Model class representing an Order object
+    """
 
     class Status(models.TextChoices):
         AWAITING_PAYMENT = 'AP', _('Awaiting Payment')
@@ -71,6 +80,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    """
+    Model class representing an OrderItem object
+    """
     quantity = models.PositiveIntegerField(default=1)
     pizza = models.ForeignKey(Pizza,
                               related_name="order_items",

@@ -4,12 +4,18 @@ from pizzalabapp.models import Ingredient, Order, OrderItem, Pizza
 
 
 class IngredientSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for Ingredient objects
+    """
     class Meta:
         model = Ingredient
         fields = '__all__'
 
 
 class IngredientListSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Ingredient objects - used for relationships
+    """
     class Meta:
         model = Ingredient
         fields = ('name',)
@@ -17,6 +23,9 @@ class IngredientListSerializer(serializers.ModelSerializer):
 
 
 class PizzaListSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Pizza objects - used for relationships
+    """
     class Meta:
         model = Pizza
         fields = ('name',)
@@ -24,6 +33,9 @@ class PizzaListSerializer(serializers.ModelSerializer):
 
 
 class PizzaSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for Pizza objects
+    """
     ingredients = IngredientListSerializer(many=True)
     has_allergen_ingredients = serializers.SerializerMethodField()
     has_lactose_ingredients = serializers.SerializerMethodField()
@@ -70,6 +82,9 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class OrderItemListSerializer(serializers.ModelSerializer):
+    """
+    Serializer for OrderItem objects - used for relationships
+    """
     pizza = PizzaListSerializer()
 
     class Meta:
@@ -87,12 +102,18 @@ class OrderItemListSerializer(serializers.ModelSerializer):
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
+    """
+    Serializer ofr OrderItem objects
+    """
     class Meta:
         model = OrderItem
         fields = '__all__'
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Order objects
+    """
     order_items = OrderItemListSerializer(many=True)
     customer = serializers.ReadOnlyField(source='customer.username')
 
