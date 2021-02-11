@@ -152,6 +152,7 @@ LOGGING = {
 # django-rest-framework
 
 REST_FRAMEWORK = {
+    # Renderers and parsers
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
@@ -159,6 +160,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
     ],
+    # Pagination
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    # Testing
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+
 }

@@ -70,16 +70,13 @@ class Order(models.Model):
     customer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'''Order id:{self.id},
-        Customer: {self.customer},
-        Total Price: {self.total_price}'''
+        return f"Order id: {self.id},\
+                Customer: {self.customer},\
+                Total Price: {self.total_price}"
 
-    def get_total_price(self):
-        total_price = 0
+    def calculate_total_price(self):
         for item in self.order_items.all():
-            total_price += item.pizza.price * item.quantity
-
-        return total_price
+            self.total_price += item.pizza.price * item.quantity
 
 
 class OrderItem(models.Model):
