@@ -54,6 +54,17 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
 
         return pizza
 
+    def update(self, instance, validated_data):
+        ingredients = validated_data.pop('ingredients')
+        new_instance = super().update(instance, validated_data)
+        for ingredient in ingredients:
+            new_instance.ingredients.add(Ingredient.objects.get(
+                name=ingredient.get('name')
+                )
+            )
+        new_instance.save()
+        return new_instance
+
     def validate_ingredients(self, value):
         for ingredient in value:
             ingr_name = ingredient.get('name')
@@ -135,7 +146,7 @@ class OrderSerializer(serializers.ModelSerializer):
                 order=order
             )
             order.order_items.add(order_item)
-        order.total_price = order.get_total_price()
+        order.calculate_total_price()
         order.save()
 
         return order
