@@ -1,0 +1,126 @@
+[
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 1,
+      "fields": {
+        "name": "Carbonara",
+        "price": 30,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 2,
+      "fields": {
+        "name": "Bismarck",
+        "price": 23,
+        "ingredients": [
+          7,
+          8
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 3,
+      "fields": {
+        "name": "Margherita",
+        "price": 18,
+        "ingredients": [
+          4,
+          9
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 4,
+      "fields": {
+        "name": "Dubiosa",
+        "price": 994,
+        "ingredients": [
+          5
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 5,
+      "fields": {
+        "name": "Safe",
+        "price": 20,
+        "ingredients": [
+          1,
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 6,
+      "fields": {
+        "name": "Pizza 0",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 7,
+      "fields": {
+        "name": "Pizza 7",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 8,
+      "fields": {
+        "name": "Pizza 8",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 9,
+      "fields": {
+        "name": "Pizza 9",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 10,
+      "fields": {
+        "name": "Pizza 10",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    },
+    {
+      "model": "pizzalabapp.pizza",
+      "pk": 11,
+      "fields": {
+        "name": "Pizza 11",
+        "price": 10,
+        "ingredients": [
+          7
+        ]
+      }
+    }
+  ]

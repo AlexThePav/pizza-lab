@@ -1,0 +1,56 @@
+[
+    {
+      "model": "auth.user",
+      "pk": 1,
+      "fields": {
+        "password": "pbkdf2_sha256$216000$5CX1G9Kss6Te$iRIduv4VK8nl4KXxLeuZwgDxTcy4ffJ3SfppcAQpo4Y=",
+        "last_login": "2021-02-04T12:14:56.338Z",
+        "is_superuser": true,
+        "username": "pav",
+        "first_name": "",
+        "last_name": "",
+        "email": "pav@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-01-26T13:58:53.132Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 3,
+      "fields": {
+        "password": "stronkpassword",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "useruserescu",
+        "first_name": "User",
+        "last_name": "Userescu",
+        "email": "useruserescu@usr.com",
+        "is_staff": false,
+        "is_active": false,
+        "date_joined": "2021-01-26T14:58:53.132Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "auth.user",
+      "pk": 33,
+      "fields": {
+        "password": "pbkdf2_sha256$216000$OQuqvSgXUbTg$h7hKbNIEhjq0Hkua9Z+NIakjIYLGn3Q4KyfT4LS7yYU=",
+        "last_login": "2021-02-04T12:00:09.219Z",
+        "is_superuser": false,
+        "username": "ion",
+        "first_name": "",
+        "last_name": "",
+        "email": "ion@ion.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-02-03T10:00:39.978Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    }
+  ]

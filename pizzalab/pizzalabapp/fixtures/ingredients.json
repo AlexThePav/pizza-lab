@@ -1,0 +1,92 @@
+[
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 1,
+      "fields": {
+        "name": "Ceapă",
+        "is_allergen": true,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 2,
+      "fields": {
+        "name": "Usturoi",
+        "is_allergen": true,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 3,
+      "fields": {
+        "name": "Smântână",
+        "is_allergen": false,
+        "has_lactose": true
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 4,
+      "fields": {
+        "name": "Sos de roșii",
+        "is_allergen": false,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 5,
+      "fields": {
+        "name": "Ceva dubios",
+        "is_allergen": true,
+        "has_lactose": true
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 6,
+      "fields": {
+        "name": "Piper",
+        "is_allergen": true,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 7,
+      "fields": {
+        "name": "Șuncă",
+        "is_allergen": false,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 8,
+      "fields": {
+        "name": "Ou",
+        "is_allergen": true,
+        "has_lactose": false
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 9,
+      "fields": {
+        "name": "Mozzarella",
+        "is_allergen": false,
+        "has_lactose": true
+      }
+    },
+    {
+      "model": "pizzalabapp.ingredient",
+      "pk": 10,
+      "fields": {
+        "name": "Postmantest",
+        "is_allergen": false,
+        "has_lactose": false
+      }
+    }
+  ]
