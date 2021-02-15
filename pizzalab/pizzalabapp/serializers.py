@@ -57,11 +57,13 @@ class PizzaSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         ingredients = validated_data.pop('ingredients')
         new_instance = super().update(instance, validated_data)
+        new_ingr_list = []
         for ingredient in ingredients:
-            new_instance.ingredients.add(Ingredient.objects.get(
+            new_ingr_list.append(Ingredient.objects.get(
                 name=ingredient.get('name')
                 )
             )
+        new_instance.ingredients.set(new_ingr_list)
         new_instance.save()
         return new_instance
 
@@ -105,11 +107,13 @@ class OrderItemListSerializer(serializers.ModelSerializer):
     def validate_pizza(self, value):
         pizza_name = value.get('name')
         try:
-            Pizza.objects.get(name=pizza_name)
+            pizza = Pizza.objects.get(name=pizza_name)
         except Pizza.DoesNotExist:
             raise serializers.ValidationError(
                 f"Pizza with name '{pizza_name}' does not exist"
             )
+
+        return pizza
 
 
 class OrderItemSerializer(serializers.ModelSerializer):

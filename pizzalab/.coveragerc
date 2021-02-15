@@ -1,2 +1,15 @@
+[run]
+omit=
+  manage.py
+  */migrations/*
+  */asgi.py
+  */admin.py
+  */apps.py
+  */wsgi.py
+  */tests/*
+  */settings.py
+
 [report]
   show_missing=True
+  skip_empty=True
+  skip_covered=True
