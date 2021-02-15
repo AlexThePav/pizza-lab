@@ -1,3 +1,3 @@
-![coverage](/pizza-lab/coverage.svg)
+![coverage](./pizza-lab/coverage.svg)
 
 # pizza-lab
