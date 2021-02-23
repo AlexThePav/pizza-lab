@@ -1,0 +1,1125 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /ingredients/:
+    get:
+      operationId: ingredients_list
+      description: Viewset for Ingredient objects
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - ingredients
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedIngredientList'
+          description: ''
+    post:
+      operationId: ingredients_create
+      description: Viewset for Ingredient objects
+      tags:
+      - ingredients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+          description: ''
+  /ingredients/{id}/:
+    get:
+      operationId: ingredients_retrieve
+      description: Viewset for Ingredient objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this ingredient.
+        required: true
+      tags:
+      - ingredients
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+          description: ''
+    put:
+      operationId: ingredients_update
+      description: Viewset for Ingredient objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this ingredient.
+        required: true
+      tags:
+      - ingredients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ingredient'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+          description: ''
+    patch:
+      operationId: ingredients_partial_update
+      description: Viewset for Ingredient objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this ingredient.
+        required: true
+      tags:
+      - ingredients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedIngredient'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+          description: ''
+    delete:
+      operationId: ingredients_destroy
+      description: Viewset for Ingredient objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this ingredient.
+        required: true
+      tags:
+      - ingredients
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /order_items/:
+    get:
+      operationId: order_items_list
+      description: Viewset for OrderItem objects
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - order_items
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderItemList'
+          description: ''
+    post:
+      operationId: order_items_create
+      description: Viewset for OrderItem objects
+      tags:
+      - order_items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItem'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+          description: ''
+  /order_items/{id}/:
+    get:
+      operationId: order_items_retrieve
+      description: Viewset for OrderItem objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this order item.
+        required: true
+      tags:
+      - order_items
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+          description: ''
+    put:
+      operationId: order_items_update
+      description: Viewset for OrderItem objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this order item.
+        required: true
+      tags:
+      - order_items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderItem'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+          description: ''
+    patch:
+      operationId: order_items_partial_update
+      description: Viewset for OrderItem objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this order item.
+        required: true
+      tags:
+      - order_items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrderItem'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderItem'
+          description: ''
+    delete:
+      operationId: order_items_destroy
+      description: Viewset for OrderItem objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this order item.
+        required: true
+      tags:
+      - order_items
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /orders/:
+    get:
+      operationId: orders_list
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - orders
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrderList'
+          description: ''
+    post:
+      operationId: orders_create
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /orders/{id}/:
+    get:
+      operationId: orders_retrieve
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    put:
+      operationId: orders_update
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    patch:
+      operationId: orders_partial_update
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOrder'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+    delete:
+      operationId: orders_destroy
+      description: |-
+        Viewset for Order objects
+        create and get_queryset methods are overridden
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - orders
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /pizzas/:
+    get:
+      operationId: pizzas_list
+      description: Viewset for Pizza objects
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - pizzas
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPizzaList'
+          description: ''
+    post:
+      operationId: pizzas_create
+      description: Viewset for Pizza objects
+      tags:
+      - pizzas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pizza'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pizza'
+          description: ''
+  /pizzas/{id}/:
+    get:
+      operationId: pizzas_retrieve
+      description: Viewset for Pizza objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pizza.
+        required: true
+      tags:
+      - pizzas
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pizza'
+          description: ''
+    put:
+      operationId: pizzas_update
+      description: Viewset for Pizza objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pizza.
+        required: true
+      tags:
+      - pizzas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pizza'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pizza'
+          description: ''
+    patch:
+      operationId: pizzas_partial_update
+      description: Viewset for Pizza objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pizza.
+        required: true
+      tags:
+      - pizzas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPizza'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pizza'
+          description: ''
+    delete:
+      operationId: pizzas_destroy
+      description: Viewset for Pizza objects
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pizza.
+        required: true
+      tags:
+      - pizzas
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /users/:
+    get:
+      operationId: users_list
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserList'
+          description: ''
+    post:
+      operationId: users_create
+      description: ''
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /users/{id}/:
+    get:
+      operationId: users_retrieve
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: users_update
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: users_partial_update
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: users_destroy
+      description: ''
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Ingredient:
+      type: object
+      description: Serializer for Ingredient objects
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        is_allergen:
+          type: boolean
+        has_lactose:
+          type: boolean
+      required:
+      - name
+      - url
+    IngredientList:
+      type: object
+      description: Serializer for Ingredient objects - used for relationships
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+    Order:
+      type: object
+      description: Serializer for Order objects
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemList'
+        customer:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodEnum'
+        delivery_address:
+          type: string
+          maxLength: 150
+        total_price:
+          type: integer
+          readOnly: true
+      required:
+      - customer
+      - delivery_address
+      - id
+      - order_items
+      - total_price
+    OrderItem:
+      type: object
+      description: Serializer ofr OrderItem objects
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        pizza:
+          type: integer
+        order:
+          type: integer
+      required:
+      - id
+      - order
+      - pizza
+    OrderItemList:
+      type: object
+      description: Serializer for OrderItem objects - used for relationships
+      properties:
+        pizza:
+          $ref: '#/components/schemas/PizzaList'
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - pizza
+    PaginatedIngredientList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+    PaginatedOrderItemList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+    PaginatedOrderList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    PaginatedPizzaList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pizza'
+    PaginatedUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    PatchedIngredient:
+      type: object
+      description: Serializer for Ingredient objects
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        is_allergen:
+          type: boolean
+        has_lactose:
+          type: boolean
+    PatchedOrder:
+      type: object
+      description: Serializer for Order objects
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemList'
+        customer:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        payment_method:
+          $ref: '#/components/schemas/PaymentMethodEnum'
+        delivery_address:
+          type: string
+          maxLength: 150
+        total_price:
+          type: integer
+          readOnly: true
+    PatchedOrderItem:
+      type: object
+      description: Serializer ofr OrderItem objects
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        pizza:
+          type: integer
+        order:
+          type: integer
+    PatchedPizza:
+      type: object
+      description: Serializer for Pizza objects
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientList'
+        has_allergen_ingredients:
+          type: string
+          readOnly: true
+        has_lactose_ingredients:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+    PatchedUser:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+    PaymentMethodEnum:
+      enum:
+      - CASH
+      - CARD
+      type: string
+    Pizza:
+      type: object
+      description: Serializer for Pizza objects
+      properties:
+        url:
+          type: string
+          format: uri
+          readOnly: true
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientList'
+        has_allergen_ingredients:
+          type: string
+          readOnly: true
+        has_lactose_ingredients:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        price:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - has_allergen_ingredients
+      - has_lactose_ingredients
+      - ingredients
+      - name
+      - price
+      - url
+    PizzaList:
+      type: object
+      description: Serializer for Pizza objects - used for relationships
+      properties:
+        name:
+          type: string
+          maxLength: 50
+      required:
+      - name
+    StatusEnum:
+      enum:
+      - AP
+      - PR
+      - PU
+      - CO
+      - RP
+      - RE
+      - CA
+      - FA
+      - EX
+      type: string
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+      required:
+      - password
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Session
