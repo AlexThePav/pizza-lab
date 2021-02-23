@@ -5,3 +5,4 @@ flake8>=3.8.4,<3.9.0
 isort>=5.7.0
 coverage>=5.4,<5.5
 coverage-badge>=1.0.1
+drf-spectacular

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'drf_spectacular'
 ]
 
 LOCAL_APPS = [
@@ -164,6 +165,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
     # Testing
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    # Schema
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 
 }
