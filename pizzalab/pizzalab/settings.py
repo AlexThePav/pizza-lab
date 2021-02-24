@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_spectacular'
 ]
 
@@ -167,6 +168,9 @@ REST_FRAMEWORK = {
     # Testing
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
     # Schema
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
-
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # Authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }

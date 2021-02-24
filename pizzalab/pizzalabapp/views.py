@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status, viewsets
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 from pizzalabapp.models import Ingredient, Order, OrderItem, Pizza
 from pizzalabapp.serializers import (IngredientSerializer, OrderItemSerializer,
@@ -31,7 +32,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     create and get_queryset methods are overridden
     """
     serializer_class = OrderSerializer
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
@@ -67,5 +68,5 @@ class OrderItemViewSet(viewsets.ModelViewSet):
     """
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [IsAuthenticated]
